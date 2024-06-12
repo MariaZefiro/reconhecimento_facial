@@ -85,7 +85,7 @@ def incluir_colaborador(conn, cursor):
         cpf = input("Insira o CPF novamente:")
 
     salvar_imagem(nome,cpf)
-    foto = f"C:\\Users\\maria.couto\\Desktop\\python\\{nome}-{cpf}.png"
+    foto = f"C:\\Users\\maria.couto\\Desktop\\python\\{nome}_{cpf}.png"
  
     dn = input("Insira a data de nascimento (DD/MM/AAAA):")
     while not validate_data_nascimento(dn):
@@ -215,6 +215,7 @@ def listar_colaboradores(cursor):
 
  
 def salvar_imagem(nome,cpf):
+
     cap=cv2.VideoCapture(0)
 
     if not cap.isOpened():
@@ -235,8 +236,8 @@ def salvar_imagem(nome,cpf):
         if key == ord('q'):
             break
 
-    cv2.imwrite(f'{nome}-{cpf}.png',frame)
-    print(f"Imagem captura e salva como '{nome}-{cpf}.png'.")
+    cv2.imwrite(f'{nome}_{cpf}.png',frame)
+    print(f"Imagem captura e salva como '{nome}_{cpf}.png'.")
 
     cap.release()
     cv2.destroyAllWindows()
@@ -294,15 +295,17 @@ def main():
 
                 img_path = colaborador[10]
                 img = cv2.imread(img_path)
+                print(img_path)
                 if img is not None:
                     cv2.imshow("Foto do colaborador:",img)
                     cv2.waitKey(3000)
                     cv2.destroyAllWindows()
                 else:
                     print("Foto do colaborador não encontrada")
+                
 
                 registrar_colaborador(conn,cursor,escolha)
 
-                
+
         
 main()
