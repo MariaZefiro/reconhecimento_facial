@@ -257,7 +257,7 @@ def registrar_colaborador(conn, cursor, cartao):
             cursor.execute("UPDATE colaboradores SET STATUS = ?, HO = ? WHERE ID = ?;", (0, data_hora_atual, colaborador[0]))
             conn.commit()
             print(f"Acesso realizado!\nAté logo, {colaborador[1]}!")
-    
+
 def main():
     conn, cursor = initialize_database()
     while True:
